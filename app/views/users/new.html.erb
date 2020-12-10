@@ -1,0 +1,23 @@
+
+<h2>Sign Up </h2>
+<% if flash[:errors]%>
+
+<p> <%=flash[:errors]%></p>
+
+<%end%>
+
+<form class="form" action="<%= users_path%>" method="post">
+
+<input type="hidden" name="authenticity_token" value="<%=form_authenticity_token %>">
+<p><label > Email </label>
+
+<input type="email" name='user[email]' /><p>
+
+<p><label > Password </label>
+
+<input type="password" name='user[password]'/>
+</p>
+
+  <input type="submit" value="Sign up" class="button">
+
+</form>

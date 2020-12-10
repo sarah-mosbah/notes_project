@@ -1,14 +1,15 @@
 class User < ApplicationRecord
 
-    validates :email, :session_token, presence:true
-    validates :email, unique:true
+    validates :email, presence:true, uniqueness:true
 
+    validates :session_token, presence: true
     validates :password_digest, presence: {message: "Password can't be invalid"}
 
     validates :password, length: { minimum: 6, allow_nil: true }
 
   
     after_initialize :ensure_session_token
+
 
     REGEX_PATTERN = /^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$/ 
 
@@ -22,7 +23,7 @@ class User < ApplicationRecord
 
 
     def ensure_session_token
-        @session_token ||= User.generate_session_token
+       self.session_token ||= User.generate_session_token
     end
 
     def self.generate_session_token
@@ -36,7 +37,7 @@ class User < ApplicationRecord
     end
 
     def valid_mail?
-        @email ~= REGEX_PATTERN
+        @email =~ REGEX_PATTERN
     end
 
 
