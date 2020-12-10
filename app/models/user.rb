@@ -14,6 +14,8 @@ class User < ApplicationRecord
     REGEX_PATTERN = /^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$/ 
 
 
+    has_many :notes
+
     attr_reader :password
 
     def password=(password)

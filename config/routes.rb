@@ -4,5 +4,7 @@ Rails.application.routes.draw do
 
   get '/login', to: "sessions#new", as: "new_session"
   post 'sessions/create', to: "sessions#create"
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+
+
+  resources :notes, only: [:create, :new, :index, :edit, :update, :show]
 end

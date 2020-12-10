@@ -5,6 +5,8 @@ class ApplicationController < ActionController::Base
     def login(user)
         @curent_user= user
         session[:token]=user.session_token
+
+        redirect_to notes_path
     end
 
 
